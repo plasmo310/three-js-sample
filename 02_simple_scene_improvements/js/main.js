@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import WebGL from "three/addons/capabilities/WebGL.js";
+import { Cube } from "./cube.js";
 
 /**
  * Main Application
@@ -64,20 +65,17 @@ class MainApp {
     });
     this.container.appendChild(this.renderer.domElement);
 
-    // create objects.
-    const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-    const cubeMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    this.cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-    this.scene.add(this.cube);
+    // create cube.
+    this.cube = new Cube();
+    this.scene.add(this.cube.mesh);
 
     // adjust window size.
     this.onWindowResize();
   }
 
   onUpdate(deltaTime, elapsedTime) {
-    // rotate cube.
-    this.cube.rotation.x += 1 * deltaTime;
-    this.cube.rotation.y += 1 * deltaTime;
+    // update cube.
+    this.cube.onUpdate(deltaTime, elapsedTime);
   }
 }
 
