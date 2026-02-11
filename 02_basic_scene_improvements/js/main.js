@@ -59,8 +59,7 @@ class MainApp {
     this.renderer.setSize(this.width, this.height);
     this.renderer.setAnimationLoop(() => {
       const deltaTime = this.clock.getDelta();
-      const elapsedTime = this.clock.getElapsedTime();
-      this.onUpdate(deltaTime, elapsedTime);
+      this.onUpdate(deltaTime);
       this.renderer.render(this.scene, this.camera);
     });
     this.container.appendChild(this.renderer.domElement);
@@ -73,9 +72,9 @@ class MainApp {
     this.onWindowResize();
   }
 
-  onUpdate(deltaTime, elapsedTime) {
+  onUpdate(deltaTime) {
     // update cube.
-    this.cube.onUpdate(deltaTime, elapsedTime);
+    this.cube.onUpdate(deltaTime);
   }
 }
 

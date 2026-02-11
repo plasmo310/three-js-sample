@@ -11,7 +11,7 @@ export class Cube {
     this.mesh = new THREE.Mesh(geometry, material);
   }
 
-  onUpdate(deltaTime, elapsedTime) {
+  onUpdate(deltaTime) {
     // rotate.
     this.mesh.rotation.x += 1 * deltaTime;
     this.mesh.rotation.y += 1 * deltaTime;
