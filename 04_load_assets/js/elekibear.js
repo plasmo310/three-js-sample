@@ -42,7 +42,8 @@ export class Elekibear {
     baseColorTex.colorSpace = THREE.SRGBColorSpace;
 
     // create material.
-    const material = new THREE.MeshPhongMaterial({
+    const material = new THREE.MeshToonMaterial({
+      color: new THREE.Color(0xffffff),
       map: baseColorTex,
     });
 

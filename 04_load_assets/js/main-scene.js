@@ -13,16 +13,16 @@ export class MainScene {
     this.camera.position.z = 5;
 
     // create lights.
-    const aoLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const aoLight = new THREE.AmbientLight(0xffffff, 1);
     this.scene.add(aoLight);
 
     const dirLightTarget = new THREE.Object3D();
     dirLightTarget.position.set(0, 0, 0);
     this.scene.add(dirLightTarget);
 
-    const dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1);
     dirLight.target = dirLightTarget;
-    dirLight.position.set(10, 10, 5);
+    dirLight.position.set(10, 10, 8.5);
     this.scene.add(dirLight);
 
     // create objects.

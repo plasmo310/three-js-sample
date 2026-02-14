@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { Cylinder } from "./cylinder.js";
+import { Torus } from "./torus.js";
 
 /**
  * Main Scene
@@ -21,17 +21,17 @@ export class MainScene {
 
     const dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
     dirLight.target = dirLightTarget;
-    dirLight.position.set(10, 10, 5);
+    dirLight.position.set(10, 10, 8.5);
     this.scene.add(dirLight);
 
     // create objects.
-    this.cylinder = new Cylinder();
-    this.scene.add(this.cylinder.root);
+    this.torus = new Torus();
+    this.scene.add(this.torus.root);
   }
 
   onUpdate(deltaTime) {
     // update objects.
-    this.cylinder.onUpdate(deltaTime);
+    this.torus.onUpdate(deltaTime);
   }
 
   onWindowResize(width, height) {

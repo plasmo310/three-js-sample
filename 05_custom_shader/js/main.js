@@ -55,8 +55,8 @@ class MainApp {
     });
     this.composer.addPass(this.filmGrainPass);
 
-    const glitchPass = new GlitchPass();
-    this.composer.addPass(glitchPass);
+    // const glitchPass = new GlitchPass();
+    // this.composer.addPass(glitchPass);
 
     const outputPass = new OutputPass();
     this.composer.addPass(outputPass);

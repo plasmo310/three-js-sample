@@ -44,7 +44,9 @@ void main() {
   col.rgb *= nl;
 
   gl_FragColor = col;
-  gl_FragColor = vec4(vec3(nl), 1.0);
+
+  #include <tonemapping_fragment>
+  #include <colorspace_fragment>
 }
 `;
 
@@ -54,7 +56,7 @@ void main() {
     return t;
   })();
 
-  constructor({ color = new THREE.Color(0x66aaff), map = null } = {}) {
+  constructor({ color = new THREE.Color(0xffffff), map = null } = {}) {
     super({
       vertexShader: CustomToonMaterial.VERT_SHADER,
       fragmentShader: CustomToonMaterial.FRAG_SHADER,

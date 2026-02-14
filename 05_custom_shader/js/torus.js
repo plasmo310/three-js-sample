@@ -6,22 +6,22 @@ import {
 } from "./material/outline-material.js";
 
 /**
- * Cylinder
+ * Torus
  */
-export class Cylinder {
+export class Torus {
   constructor() {
     // create root.
     this.root = new THREE.Group();
-    this.root.name = "Cylinder";
+    this.root.name = "Torus";
 
-    const geometry = new THREE.CylinderGeometry(1, 1, 2);
+    const geometry = new THREE.TorusGeometry(1.5, 0.5);
 
     // create outline mesh.
     let outlineGeometry = geometry.clone();
     outlineGeometry = embedSoftNormalAttribute(outlineGeometry);
     const outlineMaterial = new CustomOutlineMaterial({
       color: new THREE.Color(0xffffff),
-      width: 0.05,
+      width: 0.075,
       useSoftNormal: true,
     });
     const outline = new THREE.Mesh(outlineGeometry, outlineMaterial);
@@ -29,7 +29,7 @@ export class Cylinder {
 
     // create mesh.
     const material = new CustomToonMaterial({
-      color: new THREE.Color(0x66aaff),
+      color: new THREE.Color(0x0000ff),
     });
     const mesh = new THREE.Mesh(geometry, material);
 

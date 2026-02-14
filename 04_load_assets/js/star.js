@@ -23,7 +23,7 @@ export class Star {
     const model = await loader.loadAsync(this.MODEL_GLB_PATH);
 
     // create material.
-    const material = new THREE.MeshPhongMaterial({
+    const material = new THREE.MeshToonMaterial({
       color: "yellow",
     });
 
