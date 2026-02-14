@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import WebGL from "three/addons/capabilities/WebGL.js";
-import { Cube } from "./cube.js";
+import { MainScene } from "./main_scene.js";
 
 /**
  * Main Application
@@ -20,9 +20,26 @@ class MainApp {
       return;
     }
 
-    // on start.
-    this.onStart();
-    window.addEventListener("resize", () => this.onWindowResize());
+    // create clock.
+    this.clock = new THREE.Clock();
+
+    // create scene.
+    this.main_scene = new MainScene(this.width, this.height);
+
+    // create renderer and append to DOM.
+    this.renderer = new THREE.WebGLRenderer();
+    this.renderer.setSize(this.width, this.height);
+    this.renderer.setAnimationLoop(() => {
+      const deltaTime = this.clock.getDelta();
+      this.onUpdate(deltaTime);
+    });
+    this.container.appendChild(this.renderer.domElement);
+
+    // register resize event.
+    this.onWindowResize(this.width, this.height);
+    window.addEventListener("resize", () =>
+      this.onWindowResize(this.width, this.height),
+    );
   }
 
   get width() {
@@ -33,48 +50,21 @@ class MainApp {
     return this.container.clientHeight;
   }
 
-  onWindowResize() {
-    this.renderer.setSize(this.width, this.height);
-    this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.camera.aspect = this.width / this.height;
-    this.camera.updateProjectionMatrix();
-  }
-
-  onStart() {
-    // create clock.
-    this.clock = new THREE.Clock();
-
-    // create scene, camera.
-    this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(
-      75,
-      this.width / this.height,
-      0.1,
-      1000,
-    );
-    this.camera.position.z = 5;
-
-    // create renderer and append to DOM.
-    this.renderer = new THREE.WebGLRenderer();
-    this.renderer.setSize(this.width, this.height);
-    this.renderer.setAnimationLoop(() => {
-      const deltaTime = this.clock.getDelta();
-      this.onUpdate(deltaTime);
-      this.renderer.render(this.scene, this.camera);
-    });
-    this.container.appendChild(this.renderer.domElement);
-
-    // create cube.
-    this.cube = new Cube();
-    this.scene.add(this.cube.mesh);
-
-    // adjust window size.
-    this.onWindowResize();
-  }
-
   onUpdate(deltaTime) {
-    // update cube.
-    this.cube.onUpdate(deltaTime);
+    // update scene.
+    this.main_scene.onUpdate(deltaTime);
+
+    // execute render.
+    this.renderer.render(this.main_scene.scene, this.main_scene.camera);
+  }
+
+  onWindowResize(width, height) {
+    // resize renderer.
+    this.renderer.setSize(width, height);
+    this.renderer.setPixelRatio(window.devicePixelRatio);
+
+    // notify window resize.
+    this.main_scene.onWindowResize(width, height);
   }
 }
 
