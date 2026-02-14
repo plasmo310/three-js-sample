@@ -27,7 +27,6 @@ varying vec3 vWorldNormal;
 #include <lights_pars_begin>
 
 void main() {
-  // まず diffuse の合計（ambient + directional）
   float nl = 0.0;
 
   #if NUM_DIR_LIGHTS > 0

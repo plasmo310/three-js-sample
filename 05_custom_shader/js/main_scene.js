@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { Cube } from "./cube.js";
+import { Cylinder } from "./cylinder.js";
 
 /**
  * Main Scene
@@ -24,14 +24,14 @@ export class MainScene {
     dirLight.position.set(10, 10, 5);
     this.scene.add(dirLight);
 
-    // create cube.
-    this.cube = new Cube();
-    this.scene.add(this.cube.root);
+    // create objects.
+    this.cylinder = new Cylinder();
+    this.scene.add(this.cylinder.root);
   }
 
   onUpdate(deltaTime) {
-    // update cube.
-    this.cube.onUpdate(deltaTime);
+    // update objects.
+    this.cylinder.onUpdate(deltaTime);
   }
 
   onWindowResize(width, height) {
