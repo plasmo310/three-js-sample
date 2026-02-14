@@ -1,6 +1,11 @@
 import * as THREE from "three";
 import WebGL from "three/addons/capabilities/WebGL.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+import { GlitchPass } from "three/addons/postprocessing/GlitchPass.js";
+import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
+import { CustomFilmGrainPass } from "./pass/film-grain-pass.js";
 import { MainScene } from "./main_scene.js";
 
 /**
@@ -36,6 +41,26 @@ class MainApp {
     });
     this.container.appendChild(this.renderer.domElement);
 
+    // create composer.
+    this.composer = new EffectComposer(this.renderer);
+    const renderPass = new RenderPass(
+      this.main_scene.scene,
+      this.main_scene.camera,
+    );
+    this.composer.addPass(renderPass);
+
+    this.filmGrainPass = new CustomFilmGrainPass({
+      strength: 0.2,
+      speed: 0.05,
+    });
+    this.composer.addPass(this.filmGrainPass);
+
+    const glitchPass = new GlitchPass();
+    this.composer.addPass(glitchPass);
+
+    const outputPass = new OutputPass();
+    this.composer.addPass(outputPass);
+
     // create controls.
     this.orbit_controls = new OrbitControls(
       this.main_scene.camera,
@@ -64,8 +89,11 @@ class MainApp {
     // update controls.
     this.orbit_controls.update(deltaTime);
 
+    // update post process.
+    this.filmGrainPass.onUpdate(deltaTime);
+
     // execute render.
-    this.renderer.render(this.main_scene.scene, this.main_scene.camera);
+    this.composer.render();
   }
 
   onWindowResize(width, height) {
