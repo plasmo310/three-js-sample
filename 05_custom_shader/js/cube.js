@@ -14,9 +14,6 @@ export class Cube {
     const geometry = new THREE.CylinderGeometry(1, 1, 2);
     const material = new CustomToonMaterial({
       color: new THREE.Color(0x66aaff),
-      lightDir: new THREE.Vector3(0.5, 1.0, 0.2).normalize(),
-      ambientColor: new THREE.Color(0xffffff),
-      ambientStrength: 0.2,
     });
     const mesh = new THREE.Mesh(geometry, material);
 
