@@ -14,7 +14,7 @@ export class Torus {
     this.root = new THREE.Group();
     this.root.name = "Torus";
 
-    const geometry = new THREE.TorusGeometry(1.5, 0.5);
+    const geometry = new THREE.TorusGeometry(1.5, 0.5, 128, 128);
 
     // create outline mesh.
     let outlineGeometry = geometry.clone();
