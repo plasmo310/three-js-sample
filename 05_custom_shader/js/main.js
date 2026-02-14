@@ -50,13 +50,13 @@ class MainApp {
     this.composer.addPass(renderPass);
 
     this.filmGrainPass = new CustomFilmGrainPass({
-      strength: 0.2,
+      strength: 0.1,
       speed: 0.05,
     });
     this.composer.addPass(this.filmGrainPass);
 
-    // const glitchPass = new GlitchPass();
-    // this.composer.addPass(glitchPass);
+    const glitchPass = new GlitchPass();
+    this.composer.addPass(glitchPass);
 
     const outputPass = new OutputPass();
     this.composer.addPass(outputPass);
