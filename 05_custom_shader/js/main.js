@@ -6,7 +6,7 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { GlitchPass } from "three/addons/postprocessing/GlitchPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { CustomFilmGrainPass } from "./pass/film-grain-pass.js";
-import { MainScene } from "./main_scene.js";
+import { MainScene } from "./main-scene.js";
 
 /**
  * Main Application

@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import WebGL from "three/addons/capabilities/WebGL.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { MainScene } from "./main_scene.js";
+import { MainScene } from "./main-scene.js";
 
 /**
  * Main Application

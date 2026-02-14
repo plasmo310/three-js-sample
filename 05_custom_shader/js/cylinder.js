@@ -1,9 +1,9 @@
 import * as THREE from "three";
-import { CustomToonMaterial } from "./shader/toon_material.js";
+import { CustomToonMaterial } from "./material/toon-material.js";
 import {
   CustomOutlineMaterial,
   embedSoftNormalAttribute,
-} from "./shader/outline_material.js";
+} from "./material/outline-material.js";
 
 /**
  * Cylinder
