@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import WebGL from "three/addons/capabilities/WebGL.js";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { MainScene } from "./main_scene.js";
 
 /**
@@ -35,6 +36,12 @@ class MainApp {
     });
     this.container.appendChild(this.renderer.domElement);
 
+    // create controls.
+    this.orbit_controls = new OrbitControls(
+      this.main_scene.camera,
+      this.renderer.domElement,
+    );
+
     // register resize event.
     this.onWindowResize(this.width, this.height);
     window.addEventListener("resize", () =>
@@ -53,6 +60,9 @@ class MainApp {
   onUpdate(deltaTime) {
     // update scene.
     this.main_scene.onUpdate(deltaTime);
+
+    // update controls.
+    this.orbit_controls.update(deltaTime);
 
     // execute render.
     this.renderer.render(this.main_scene.scene, this.main_scene.camera);
